@@ -1,0 +1,24 @@
+===EVENTO===
+ID: EVT-2026001
+Título: jornada institucional
+Fecha: 2026-09-12
+Hora: 15:00 - 17:10
+Categoría: Académico
+Cupo: 55
+Descripción: dia a resolver problematicas en el curso
+Requiere inscripción: Sí
+Creado: 2026-09-03 20:09:15
+===FIN EVENTO===
+
+===EVENTO===
+ID: EVT-2026002
+Título: test 2
+Fecha: 2026-09-24
+Hora: 15:16 - 15:16
+Categoría: Cultural
+Cupo: 34
+Descripción: descripcion de evento
+Requiere inscripción: No
+Creado: 2026-09-03 20:14:45
+===FIN EVENTO===
+

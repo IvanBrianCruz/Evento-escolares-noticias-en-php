@@ -45,7 +45,7 @@ header p {
     color: var(--text-muted);
 }
 
-/* Alertas Flash */
+/* --- ALERTAS FLASH --- */
 .alerta {
     padding: 1rem;
     border-radius: 6px;
@@ -55,7 +55,7 @@ header p {
 .alerta.exito { background-color: var(--success-bg); color: var(--success-text); }
 .alerta.error { background-color: var(--error-bg); color: var(--error-text); }
 
-/* Tarjetas (Cards) */
+/* --- TARJETAS (CARDS) --- */
 .card {
     background-color: var(--card-bg);
     padding: 2rem;
@@ -72,7 +72,7 @@ header p {
     font-size: 1.4rem;
 }
 
-/* Formularios */
+/* --- FORMULARIOS --- */
 fieldset {
     border: none;
     margin-bottom: 1.5rem;
@@ -111,6 +111,7 @@ input[type="text"],
 input[type="date"],
 input[type="time"],
 input[type="number"],
+input[type="email"],
 select,
 textarea {
     padding: 0.75rem;
@@ -159,9 +160,45 @@ textarea {
     background-color: #112440;
 }
 
-/* --- ESTILOS ACTUALIZADOS PARA EL LISTADO DE EVENTOS COMPLETOS --- */
+/* --- ESTILOS DE ETIQUETAS (BADGES) --- */
+.badge {
+    padding: 0.4rem 0.8rem;
+    border-radius: 999px;
+    font-size: 0.8rem;
+    font-weight: 600;
+    color: white;
+    display: inline-block;
+}
 
-.evento-list {
+/* Colores por categoría */
+.badge-academico { background-color: #3b82f6; } 
+.badge-cultural { background-color: #a855f7; } 
+.badge-deportivo { background-color: #22c55e; } 
+.badge-programacion { background-color: #64748b; } 
+.badge-otro { background-color: #f59e0b; } 
+
+/* Estados de inscripción */
+.badge-abierto {
+    background-color: #d1fae5;
+    color: #065f46;
+    border: 1px solid #34d399;
+}
+
+.badge-completo {
+    background-color: #fee2e2;
+    color: #991b1b;
+    border: 1px solid #f87171;
+}
+
+/* --- LISTADO DE EVENTOS COMPLETOS --- */
+.empty-state {
+    text-align: center;
+    color: var(--text-muted);
+    font-style: italic;
+    padding: 2rem 0;
+}
+
+.eventos-list {
     display: flex;
     flex-direction: column;
     gap: 1.5rem;
@@ -194,8 +231,18 @@ textarea {
 
 .evento-header h3 {
     font-size: 1.25rem;
-    color: var(--primary-color);
     margin: 0;
+}
+
+.enlace-titulo {
+    color: var(--primary-color);
+    text-decoration: none;
+    transition: color 0.2s;
+}
+
+.enlace-titulo:hover {
+    color: #2563eb;
+    text-decoration: underline;
 }
 
 .evento-body {
@@ -245,7 +292,72 @@ textarea {
     margin-top: 0.5rem;
 }
 
+.evento-acciones {
+    align-items: center;
+}
+
+.btn-inscribirse {
+    background-color: var(--primary-color);
+    color: white;
+    text-decoration: none;
+    padding: 0.5rem 1rem;
+    border-radius: 6px;
+    font-size: 0.9rem;
+    font-weight: 500;
+    transition: background-color 0.2s;
+    display: inline-block;
+}
+
+.btn-inscribirse:hover {
+    background-color: #112440;
+}
+
+/* --- TABLA DE PARTICIPANTES --- */
+.mt-2 {
+    margin-top: 2rem;
+}
+
+.tabla-responsive {
+    overflow-x: auto;
+}
+
+.tabla-participantes {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 1rem;
+    font-size: 0.9rem;
+}
+
+.tabla-participantes th,
+.tabla-participantes td {
+    padding: 1rem;
+    text-align: left;
+    border-bottom: 1px solid var(--border-color);
+}
+
+.tabla-participantes th {
+    background-color: #f9fafb;
+    color: var(--primary-color);
+    font-weight: 600;
+    text-transform: uppercase;
+    font-size: 0.8rem;
+    letter-spacing: 0.05em;
+}
+
+.tabla-participantes tr:last-child td {
+    border-bottom: none;
+}
+
+.tabla-participantes tbody tr:hover {
+    background-color: #f3f4f6;
+}
+
+/* --- RESPONSIVE --- */
 @media (max-width: 600px) {
+    .form-row {
+        flex-direction: column;
+        gap: 0;
+    }
     .evento-header {
         flex-direction: column;
         gap: 0.8rem;
@@ -255,4 +367,80 @@ textarea {
         gap: 0.5rem;
         align-items: flex-start;
     }
+}
+
+
+/* --- CORRECCIONES DE TÍTULOS Y BOTONES --- */
+
+/* Título de la Card del Evento */
+.evento-header h3 {
+    font-size: 1.35rem;
+    margin: 0;
+    line-height: 1.3;
+}
+
+.enlace-titulo {
+    color: var(--primary-color);
+    text-decoration: none;
+    font-weight: 700; /* Lo hace más grueso y legible */
+    transition: color 0.2s;
+    display: inline-block;
+}
+
+.enlace-titulo:hover {
+    color: #2563eb;
+    text-decoration: underline;
+}
+
+/* Alineación del pie de la tarjeta (Badge Abierto + Botón Inscribirse) */
+.evento-footer.evento-acciones {
+    display: flex;
+    justify-content: space-between; /* Separa el badge a la izquierda y el botón a la derecha */
+    align-items: center;
+    padding-top: 1.2rem;
+    margin-top: 1rem;
+    border-top: 1px solid var(--border-color);
+}
+
+/* Botón principal (Inscribirse y Submit) */
+.btn-inscribirse {
+    background-color: var(--primary-color);
+    color: #ffffff;
+    text-decoration: none;
+    padding: 0.6rem 1.2rem;
+    border-radius: 6px;
+    font-size: 0.95rem;
+    font-weight: 600;
+    transition: all 0.2s ease;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    border: 2px solid var(--primary-color);
+}
+
+.btn-inscribirse:hover {
+    background-color: #112440;
+    border-color: #112440;
+    transform: translateY(-1px); /* Pequeño efecto de elevación */
+    color: #ffffff;
+}
+
+/* Botón secundario (Volver) */
+.btn-volver {
+    display: inline-flex;
+    align-items: center;
+    margin-top: 0.5rem;
+    color: var(--text-main);
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 0.9rem;
+    padding: 0.5rem 1rem;
+    background-color: #e5e7eb;
+    border-radius: 6px;
+    transition: all 0.2s ease;
+}
+
+.btn-volver:hover {
+    background-color: #d1d5db;
+    color: var(--primary-color);
 }

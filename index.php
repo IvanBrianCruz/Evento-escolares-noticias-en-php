@@ -103,10 +103,20 @@ $eventos = obtener_eventos();
                 <?php else: ?>
                     <div class="eventos-list">
                         <?php foreach ($eventos as $evento): ?>
+                            <?php 
+                                $id_evento = htmlspecialchars($evento['ID'] ?? '');
+                                $titulo = htmlspecialchars($evento['Título'] ?? '');
+                                $esta_abierto = evento_esta_abierto($evento);
+                            ?>
                             <article class="evento-item-completo">
                                 
                                 <div class="evento-header">
-                                    <h3><?= htmlspecialchars($evento['Título'] ?? '') ?></h3>
+                                    <!-- El título ahora es un enlace a ver_evento.php-->
+                                    <h3 class="empty-state">
+                                        <a href="ver_evento.php?id=<?= $id_evento ?>" class="enlace-titulo">
+                                            <?= $titulo ?>
+                                        </a>
+                                    </h3>
                                     <?php 
                                         $cat = htmlspecialchars($evento['Categoría'] ?? '');
                                         $clase_badge = strtolower(str_replace('ó', 'o', $cat)); 
@@ -123,13 +133,25 @@ $eventos = obtener_eventos();
                                         <span>📅 <strong>Fecha:</strong> <?= htmlspecialchars($evento['Fecha'] ?? '') ?></span>
                                         <span>🕒 <strong>Horario:</strong> <?= htmlspecialchars($evento['Hora'] ?? '') ?></span>
                                         <span>👥 <strong>Cupo:</strong> <?= htmlspecialchars($evento['Cupo'] ?? 'Sin límite') ?></span>
-                                        <span>📝 <strong>Inscripción previa:</strong> <?= htmlspecialchars($evento['Requiere inscripción'] ?? 'No') ?></span>
                                     </div>
                                 </div>
 
-                                <div class="evento-footer">
-                                    <span><strong>ID:</strong> <?= htmlspecialchars($evento['ID'] ?? '') ?></span>
-                                    <span><em>Publicado el <?= htmlspecialchars($evento['Creado'] ?? '') ?></em></span>
+                                <div class="evento-footer evento-acciones">
+                                    <div class="estado-evento">
+                                        <!-- Mostrar estado Abierto o Completo[cite: 2] -->
+                                        <?php if ($esta_abierto): ?>
+                                            <span class="badge badge-abierto">Abierto</span>
+                                        <?php else: ?>
+                                            <span class="badge badge-completo">Completo</span>
+                                        <?php endif; ?>
+                                    </div>
+                                    
+                                    <div class="botones-evento">
+                                        <!-- Botón Inscribirse si está abierto[cite: 2] -->
+                                        <?php if ($esta_abierto && ($evento['Requiere inscripción'] ?? 'No') === 'Sí'): ?>
+                                            <a href="ver_evento.php?id=<?= $id_evento ?>" class="btn-inscribirse">Inscribirse</a>
+                                        <?php endif; ?>
+                                    </div>
                                 </div>
 
                             </article>
